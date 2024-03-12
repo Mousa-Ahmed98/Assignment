@@ -1,0 +1,27 @@
+﻿@model Instructor
+@{
+    ViewData["Title"] = "GetView";
+}
+
+@{
+
+    <div class="container p-1 my-1">
+        <div class="card" style="width: 40%">
+            <img src="/images/@Model.Image" class="card-img-top" alt="@Model.Name">
+            <div class="card-body">
+                <h3 class="card-title">Name: @Model.Name</h3>
+                <h5 class="card-text">Address: @Model.Address</h5>
+                <h5 class="card-text">Salary: @Model.Salary</h5>
+                <br>
+
+                <div class="mt-auto">
+                    <h5 class="card-text" style="color: teal">Department: @Model.Department.Name</h5>
+                    <h5 class="card-text" style="color: teal">Course: @Model.Course.Name</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+

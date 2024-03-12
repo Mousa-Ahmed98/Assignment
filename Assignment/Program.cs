@@ -16,11 +16,9 @@ namespace Assignment
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            app.UseStaticFiles();
+            app.UseStaticFiles().UseRouting().UseAuthorization();
 
-            app.UseRouting();
-
-            app.UseAuthorization();
+            
 
             app.MapControllerRoute(
                 name: "default",
