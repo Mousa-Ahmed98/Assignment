@@ -1,0 +1,32 @@
+﻿@model List<Instructor>
+@{
+    ViewData["Title"] = "GetView";
+}
+
+
+
+    
+    <div class="container-fluid d-flex flex-wrap">
+        @foreach (Instructor instructor in Model)
+        {
+            
+                <div class="card my-4 mx-3" style="width: 21%">
+                    <img src="/images/@instructor.Image" class="card-img-top" alt="@instructor.Name">
+                    <div class="card-body">
+                        <h3 class="card-title">Name: @instructor.Name</h3>
+                        <h5 class="card-text">Address: @instructor.Address</h5>
+                        <h5 class="card-text">Salary: @instructor.Salary</h5>
+                        <br>
+                        
+                        <div class="mt-auto">
+                        <h5 class="card-text" style="color: teal">Department: @instructor.Department.Name</h5>
+                        <h5 class="card-text" style="color: teal">Course: @instructor.Course.Name</h5>
+                        </div>
+                    </div>
+                </div>
+            
+
+        }
+    </div>
+   
+
