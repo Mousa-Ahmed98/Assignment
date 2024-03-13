@@ -1,0 +1,23 @@
+﻿@model Assignment.Models.ViewModels.TraineeCourseResultViewModel
+
+@{
+    <div class="container mt-4 fs-4">
+        <h2>Student Course Results</h2>
+        <ul class="list-group mt-3" style="text-align: center">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-md-4">Student Name</div>
+                    <div class="col-md-4">Course Name</div>
+                    <div class="col-md-4">Degree</div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-md-4">@Model.TraineeName</div>
+                    <div class="col-md-4">@Model.CourseName</div>
+                    <div class="col-md-4" style="color: @Model.Color">@Model.Grade</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+}

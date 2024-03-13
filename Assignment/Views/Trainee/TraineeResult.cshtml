@@ -1,0 +1,17 @@
+﻿@model List<CrsResult>
+
+@{
+    //<h2>Name: @Model.First().Trainee.Name</h2>
+    <h1>Courses:</h1>
+    foreach(CrsResult cr in Model)
+    {
+        if(cr.Degree >= cr.Course.MinDegree)
+        {
+            <h3 style="color: green">    @cr.Course.Name: @cr.Degree</h3>
+        }
+        else
+        {
+            <h3 style="color: orange">    @cr.Course.Name: @cr.Degree</h3>
+        }
+    }
+}

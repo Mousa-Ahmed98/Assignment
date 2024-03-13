@@ -22,8 +22,9 @@ namespace Assignment.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            /*base.OnModelCreating(modelBuilder);
 
+            
 
             modelBuilder.Entity<Department>().HasData(
             new Department { Id = 1, Name = "Web development", ManagerName = "Christien Zarief" },
@@ -392,7 +393,7 @@ namespace Assignment.Models
             new CrsResult { Id = 139, Degree = 81, CourseId = 19, TraineeId = 19 },
             new CrsResult { Id = 140, Degree = 80, CourseId = 20, TraineeId = 10 });
 
-
+            */
 
         }
     }
