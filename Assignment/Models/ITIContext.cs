@@ -22,7 +22,7 @@ namespace Assignment.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /*base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
 
             
 
@@ -42,36 +42,36 @@ namespace Assignment.Models
 
 
             modelBuilder.Entity<Course>().HasData(
-            new Course { Id = 1, Name = "Introduction to Web Development", Degree = 100, MinDegree = 90, Hours = 40, DepartmentId = 1 },
-            new Course { Id = 2, Name = "User Interface Design Fundamentals", Degree = 90, MinDegree = 80, Hours = 30, DepartmentId = 2 },
-            new Course { Id = 3, Name = "Open Source Technologies", Degree = 95, MinDegree = 85, Hours = 35, DepartmentId = 3 },
-            new Course { Id = 4, Name = "Mobile App Development", Degree = 95, MinDegree = 85, Hours = 35, DepartmentId = 4 },
-            new Course { Id = 5, Name = "Introduction to Data Science", Degree = 90, MinDegree = 80, Hours = 30, DepartmentId = 5 },
-            new Course { Id = 6, Name = "Software Quality Assurance", Degree = 85, MinDegree = 75, Hours = 25, DepartmentId = 6 },
-            new Course { Id = 7, Name = "Project Management Fundamentals", Degree = 80, MinDegree = 70, Hours = 20, DepartmentId = 7 },
-            new Course { Id = 8, Name = "Network Fundamentals", Degree = 85, MinDegree = 75, Hours = 25, DepartmentId = 8 },
-            new Course { Id = 9, Name = "Cloud Computing Essentials", Degree = 90, MinDegree = 80, Hours = 30, DepartmentId = 9 },
-            new Course { Id = 10, Name = "Database Management Systems", Degree = 85, MinDegree = 75, Hours = 25, DepartmentId = 1 },
-            new Course { Id = 11, Name = "Cybersecurity Fundamentals", Degree = 90, MinDegree = 80, Hours = 30, DepartmentId = 2 },
-            new Course { Id = 12, Name = "Artificial Intelligence Basics", Degree = 85, MinDegree = 75, Hours = 25, DepartmentId = 3 },
-            new Course { Id = 13, Name = "Machine Learning Essentials", Degree = 90, MinDegree = 80, Hours = 30, DepartmentId = 4 },
-            new Course { Id = 14, Name = "Big Data Analytics", Degree = 90, MinDegree = 80, Hours = 30, DepartmentId = 5 },
-            new Course { Id = 15, Name = "Software Engineering Principles", Degree = 85, MinDegree = 75, Hours = 25, DepartmentId = 6 },
-            new Course { Id = 16, Name = "Computer Graphics Fundamentals", Degree = 85, MinDegree = 75, Hours = 25, DepartmentId = 7 },
-            new Course { Id = 17, Name = "Internet of Things (IoT) Essentials", Degree = 90, MinDegree = 80, Hours = 30, DepartmentId = 8 },
-            new Course { Id = 18, Name = "Software Testing Techniques", Degree = 85, MinDegree = 75, Hours = 25, DepartmentId = 9 },
-            new Course { Id = 19, Name = "Web Design Fundamentals", Degree = 80, MinDegree = 70, Hours = 20, DepartmentId = 1 },
-            new Course { Id = 20, Name = "Agile Development Methodologies", Degree = 90, MinDegree = 80, Hours = 30, DepartmentId = 2 },
-            new Course { Id = 21, Name = "Advanced Web Development", Degree = 95, MinDegree = 85, Hours = 35, DepartmentId = 3 },
-            new Course { Id = 22, Name = "User Experience Design", Degree = 85, MinDegree = 75, Hours = 25, DepartmentId = 4 },
-            new Course { Id = 23, Name = "Software Architecture", Degree = 95, MinDegree = 85, Hours = 35, DepartmentId = 5 },
-            new Course { Id = 24, Name = "iOS App Development", Degree = 90, MinDegree = 80, Hours = 30, DepartmentId = 6 },
-            new Course { Id = 25, Name = "Data Mining Techniques", Degree = 85, MinDegree = 75, Hours = 25, DepartmentId = 7 },
-            new Course { Id = 26, Name = "Agile Project Management", Degree = 80, MinDegree = 70, Hours = 20, DepartmentId = 8 },
-            new Course { Id = 27, Name = "Network Security", Degree = 90, MinDegree = 80, Hours = 30, DepartmentId = 9 },
-            new Course { Id = 28, Name = "Cloud Infrastructure Management", Degree = 85, MinDegree = 75, Hours = 25, DepartmentId = 1 },
-            new Course { Id = 29, Name = "Relational Database Design", Degree = 90, MinDegree = 80, Hours = 30, DepartmentId = 2 },
-            new Course { Id = 30, Name = "Ethical Hacking", Degree = 85, MinDegree = 75, Hours = 25, DepartmentId = 3 });
+            new Course { Id = 1, Name = "Introduction to Web Development",  MinDegree = 90, Hours = 40, DepartmentId = 1 },
+            new Course { Id = 2, Name = "User Interface Design Fundamentals", MinDegree = 80, Hours = 30, DepartmentId = 2 },
+            new Course { Id = 3, Name = "Open Source Technologies", MinDegree = 85, Hours = 35, DepartmentId = 3 },
+            new Course { Id = 4, Name = "Mobile App Development", MinDegree = 85, Hours = 35, DepartmentId = 4 },
+            new Course { Id = 5, Name = "Introduction to Data Science",  MinDegree = 80, Hours = 30, DepartmentId = 5 },
+            new Course { Id = 6, Name = "Software Quality Assurance", MinDegree = 75, Hours = 25, DepartmentId = 6 },
+            new Course { Id = 7, Name = "Project Management Fundamentals", MinDegree = 70, Hours = 20, DepartmentId = 7 },
+            new Course { Id = 8, Name = "Network Fundamentals", MinDegree = 75, Hours = 25, DepartmentId = 8 },
+            new Course { Id = 9, Name = "Cloud Computing Essentials", MinDegree = 80, Hours = 30, DepartmentId = 9 },
+            new Course { Id = 10, Name = "Database Management Systems", MinDegree = 75, Hours = 25, DepartmentId = 1 },
+            new Course { Id = 11, Name = "Cybersecurity Fundamentals", MinDegree = 80, Hours = 30, DepartmentId = 2 },
+            new Course { Id = 12, Name = "Artificial Intelligence Basics",  MinDegree = 75, Hours = 25, DepartmentId = 3 },
+            new Course { Id = 13, Name = "Machine Learning Essentials",MinDegree = 80, Hours = 30, DepartmentId = 4 },
+            new Course { Id = 14, Name = "Big Data Analytics", MinDegree = 80, Hours = 30, DepartmentId = 5 },
+            new Course { Id = 15, Name = "Software Engineering Principles",MinDegree = 75, Hours = 25, DepartmentId = 6 },
+            new Course { Id = 16, Name = "Computer Graphics Fundamentals", MinDegree = 84, Hours = 25, DepartmentId = 7 },
+            new Course { Id = 17, Name = "Internet of Things (IoT) Essentials", MinDegree = 80, Hours = 30, DepartmentId = 8 },
+            new Course { Id = 18, Name = "Software Testing Techniques", MinDegree = 75, Hours = 25, DepartmentId = 9 },
+            new Course { Id = 19, Name = "Web Design Fundamentals", MinDegree = 70, Hours = 20, DepartmentId = 1 },
+            new Course { Id = 20, Name = "Agile Development Methodologies", MinDegree = 80, Hours = 30, DepartmentId = 2 },
+            new Course { Id = 21, Name = "Advanced Web Development", MinDegree = 85, Hours = 35, DepartmentId = 3 },
+            new Course { Id = 22, Name = "User Experience Design", MinDegree = 75, Hours = 25, DepartmentId = 4 },
+            new Course { Id = 23, Name = "Software Architecture",  MinDegree = 85, Hours = 35, DepartmentId = 5 },
+            new Course { Id = 24, Name = "iOS App Development",  MinDegree = 80, Hours = 30, DepartmentId = 6 },
+            new Course { Id = 25, Name = "Data Mining Techniques",  MinDegree = 75, Hours = 25, DepartmentId = 7 },
+            new Course { Id = 26, Name = "Agile Project Management", MinDegree = 70, Hours = 20, DepartmentId = 8 },
+            new Course { Id = 27, Name = "Network Security", MinDegree = 80, Hours = 30, DepartmentId = 9 },
+            new Course { Id = 28, Name = "Cloud Infrastructure Management", MinDegree = 75, Hours = 25, DepartmentId = 1 },
+            new Course { Id = 29, Name = "Relational Database Design", MinDegree = 80, Hours = 30, DepartmentId = 2 },
+            new Course { Id = 30, Name = "Ethical Hacking", MinDegree = 75, Hours = 25, DepartmentId = 3 });
 
 
 
@@ -393,7 +393,7 @@ namespace Assignment.Models
             new CrsResult { Id = 139, Degree = 81, CourseId = 19, TraineeId = 19 },
             new CrsResult { Id = 140, Degree = 80, CourseId = 20, TraineeId = 10 });
 
-            */
+            
 
         }
     }

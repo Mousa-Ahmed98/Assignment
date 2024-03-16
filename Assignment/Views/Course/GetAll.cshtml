@@ -1,0 +1,28 @@
+﻿@model List<Assignment.Models.Course>
+
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Hours</th>
+                <th scope="col">Minimum degree</th>
+                <th scope="col">Course Results</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Course course in Model)
+            {
+                <tr>
+                    <th scope="row">@course.Id</th>
+                    <td>@course.Name</td>
+                    <td>@course.Hours</td>
+                    <td>@course.MinDegree</td>
+                    <td><a href="CourseResult?CID=@course.Id"> See result</a></td>
+                </tr>
+            }
+            
+        </tbody>
+    </table>
+    

@@ -1,0 +1,33 @@
+﻿@model Assignment.Models.ViewModels.AddCourseVM
+
+@{
+    SelectList selectListItemsOfDepartmentss = new SelectList(Model.Departments, "Id", "Name");
+}
+
+<h1>Add new Course</h1>
+<form asp-action="SaveAdd" asp-controller="Course" method="post">
+    <input asp-for="Name" value="@Model.Name"
+    class="form form-control p-2 m-2" placeholder="Name" /> 
+
+    <input asp-for="Hours" id="Hours" value="@Model.Hours"
+    class="form form-control p-2 m-2" placeholder="Hours" />
+
+    <input asp-for="MinDegree" value="@Model.MinDegree"
+    class="form form-control p-2 m-2" placeholder="Minimum degree" />
+
+    <label class="p-2 m-2">Department</label>
+    <select asp-for="DepartmentId" asp-items="@selectListItemsOfDepartmentss" class="form form-control p-1 m-1">
+        @foreach (Department department in Model.Departments)
+        {
+            <option value="@department.Id">@department.Name</option>
+        }
+    </select>
+
+    <input type="submit" value="Add" class="btn btn-success p-2 m-2"/>
+    @if (Model.IsError)
+    {
+        <script>
+            alert("Pelase Fill All Data");
+        </script>
+    }
+</form>

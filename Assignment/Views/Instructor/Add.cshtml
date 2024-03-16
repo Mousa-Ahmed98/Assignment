@@ -1,0 +1,28 @@
+﻿@model Assignment.Models.ViewModels.AddInstructorVM
+
+<h1>Add new Instructor</h1>
+<form action="/Instructor/SaveAdd" method="post">
+    <input name="Name" id="Name" value="@Model.Name" class="form form-control p-2 m-2" placeholder="Name"/>
+    <input name="Image" id="Image" value="@Model.Image" class="form form-control p-2 m-2" placeholder="Image" />
+    <input name="Salary" id="Salary" value="@Model.Salary" class="form form-control p-2 m-2" placeholder="Salary" />
+    <input name="Address" id="Assress" value="@Model.Address" class="form form-control p-2 m-2" placeholder="Address" />
+
+    <label class="p-2 m-2">Department</label>
+    <select name="DepartmentId" id="DepartmentId" class="form form-control p-1 m-1">
+        @foreach(Department department in Model.Departments)
+        {
+            <option value="@department.Id">@department.Name</option>
+        }
+    </select>
+
+    <label class="p-2 m-2">Course</label>
+    <select name="CourseId" id="CourseId" class="form form-control p-1 m-1">
+        @foreach (Course course in Model.Courses)
+        {
+            <option value="@course.Id">@course.Name</option>
+        }
+    </select>
+
+    <input type="submit" class="form form-control p-2 m-2" placeholder="Address" />
+
+</form>
