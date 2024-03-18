@@ -1,23 +1,32 @@
 ﻿@model Assignment.Models.ViewModels.AddCourseVM
 
 @{
-    SelectList selectListItemsOfDepartmentss = new SelectList(Model.Departments, "Id", "Name");
+    SelectList selectListItemsOfDepartmentss =
+    new SelectList(Model.Departments, "Id", "Name");
 }
 
 <h1>Add new Course</h1>
 <form asp-action="SaveAdd" asp-controller="Course" method="post">
+
     <input asp-for="Name" value="@Model.Name"
     class="form form-control p-2 m-2" placeholder="Name" /> 
+    <span asp-validation-for="Name" class="text-danger"></span>
 
     <input asp-for="Hours" id="Hours" value="@Model.Hours"
     class="form form-control p-2 m-2" placeholder="Hours" />
+    <span asp-validation-for="Hours" class="text-danger"></span>
+
+    <input asp-for="Degree" value="@Model.Degree"
+           class="form form-control p-2 m-2" placeholder="Degree" />
+    <span asp-validation-for="Degree" class="text-danger"></span>
 
     <input asp-for="MinDegree" value="@Model.MinDegree"
     class="form form-control p-2 m-2" placeholder="Minimum degree" />
+    <span asp-validation-for="MinDegree" class="text-danger"></span>
 
     <label class="p-2 m-2">Department</label>
     <select asp-for="DepartmentId" asp-items="@selectListItemsOfDepartmentss" class="form form-control p-1 m-1">
-        @foreach (Department department in Model.Departments)
+        @foreach (Department department in Model.Departments!)
         {
             <option value="@department.Id">@department.Name</option>
         }
@@ -31,3 +40,4 @@
         </script>
     }
 </form>
+<partial name="_ValidationScriptsPartial" />

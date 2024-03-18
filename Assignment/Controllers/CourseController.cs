@@ -8,7 +8,7 @@ namespace Assignment.Controllers
 {
     public class CourseController : Controller
     {
-        ITIContext ITIContext = new ITIContext();
+        
 
         public IActionResult Index()
         {
@@ -32,18 +32,35 @@ namespace Assignment.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveAdd(Course course)
+        public async Task<IActionResult> SaveAdd(AddCourseVM courseVm)
         {
-            AddCourseVM addCourseVM = AddCourseVM.InstantiateInsVM(course);
-            if (CourseBl.IsValidToAdd(addCourseVM))
+            Course course2 = new Course()
+            {
+                Name = courseVm.Name,
+                Degree = courseVm.Degree,
+                MinDegree = courseVm.MinDegree,
+                Hours = courseVm.Hours,
+                DepartmentId = courseVm.DepartmentId
+            };
+
+            if (ModelState.IsValid)
+            {
+                if (await CourseBl.Add(course2) == 1)
+                {
+                    return RedirectToAction("GetAll");
+                }
+            }
+
+            AddCourseVM addCourseVM = AddCourseVM.InstantiateInsVM(course2);
+            /*if (CourseBl.IsValidToAdd(addCourseVM))
             {
                 if (await CourseBl.Add(course) == 1)
                 {
                     return RedirectToAction("GetAll");
                 }
-            }
+            }*/
             addCourseVM.Departments = DepartmentBl.GetAll();
-            addCourseVM.IsError = true;
+            //addCourseVM.IsError = true;
             return View("Add", addCourseVM);
         }
 
@@ -51,6 +68,11 @@ namespace Assignment.Controllers
         {
             List<Course> courses = CourseBl.GetAll();
             return View("GetAll", courses);
+        }
+
+        public IActionResult CheckMinDegree(int MinDegree, int Degree)
+        {
+            return Json(MinDegree <= Degree);
         }
     }
 }
