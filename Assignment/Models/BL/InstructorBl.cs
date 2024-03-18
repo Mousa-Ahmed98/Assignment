@@ -37,5 +37,13 @@ namespace Assignment.Models
                 throw e;
             }
         }
+
+        public static List<Instructor> Search(string Key)
+        {
+            return ITIContext
+                .Instructors
+                .Where(i => i.Name.StartsWith(Key))
+                .ToList();
+        }
     }
 }
