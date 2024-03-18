@@ -2,7 +2,7 @@
 using Assignment.Models.BL;
 using Assignment.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace Assignment.Controllers
 {
@@ -12,8 +12,10 @@ namespace Assignment.Controllers
         public IActionResult Index()
         {
             List<Instructor> instructors = InstructorBl.GetAll();
-            return View();
+            return View("GetAll", InstructorBl.GetAll());
         }
+
+        
 
         public IActionResult GetAll()
         {
@@ -29,11 +31,15 @@ namespace Assignment.Controllers
         public IActionResult Add()
         {
             AddInstructorVM addInstructorVM = new AddInstructorVM();
-            addInstructorVM.Courses = CourseBl.GetAll();
             addInstructorVM.Departments = DepartmentBl.GetAll();
+            addInstructorVM.Courses = CourseBl.GetAllWhere(addInstructorVM.Departments.FirstOrDefault().Id);
 
 
             return View("Add", addInstructorVM);
+        }
+        public IActionResult GetCoursesOfDepartment(int DID)
+        {
+            return Json(CourseBl.GetAllWhere(DID));
         }
         [HttpPost]
         public async Task<IActionResult> SaveAdd(Instructor instructor)
@@ -46,9 +52,29 @@ namespace Assignment.Controllers
             catch(Exception e)
             {
                 AddInstructorVM addInstructorVM = AddInstructorVM.InstantiateInsVM(instructor);
-                
+                addInstructorVM.Departments = DepartmentBl.GetAll();
+                addInstructorVM.Courses = CourseBl.GetAllWhere(addInstructorVM.Departments.FirstOrDefault().Id);
+
                 return View("Add", addInstructorVM);
             }
+        }
+
+        public IActionResult Search(string Key)
+        {
+            List<SearchInstructorViewModel> searchInstructorViewModels = new List<SearchInstructorViewModel>();
+            foreach (Instructor item in InstructorBl.Search(Key))
+            {
+                searchInstructorViewModels.Add(new SearchInstructorViewModel()
+                {
+                    Name = item.Name,
+                    Address = item.Address,
+                    Image = item.Image,
+                    Salary = item.Salary,
+                    Department = item.Department.Name,
+                    Course = item.Course.Name
+                });
+            }
+            return Json(searchInstructorViewModels);
         }
     }
 }

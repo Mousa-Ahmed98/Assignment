@@ -24,6 +24,10 @@ namespace Assignment.Models.BL
         {
             return ITIContext.Courses.ToList();
         }
+        public static List<Course> GetAllWhere(int DID)
+        {
+            return ITIContext.Courses.Where(c => c.DepartmentId == DID).ToList();
+        }
 
         public static async Task<int> Add(Course course)
         {

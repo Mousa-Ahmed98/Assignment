@@ -8,7 +8,7 @@
     <input name="Address" id="Assress" value="@Model.Address" class="form form-control p-2 m-2" placeholder="Address" />
 
     <label class="p-2 m-2">Department</label>
-    <select name="DepartmentId" id="DepartmentId" class="form form-control p-1 m-1">
+    <select name="DepartmentId" id="DepartmentId" class="form form-control p-1 m-1" onchange="fetchCourses()">
         @foreach(Department department in Model.Departments)
         {
             <option value="@department.Id">@department.Name</option>
@@ -26,3 +26,29 @@
     <input type="submit" class="form form-control p-2 m-2" placeholder="Address" />
 
 </form>
+
+        <script>
+            function fetchCourses(){
+                var DID = $("#DepartmentId").val();
+                var data = ``;
+        $.ajax({
+            url: "http://localhost:5239/instructor/GetCoursesOfDepartment?DID=" + DID,
+            method: "GET", 
+            dataType: "json",
+            success: function (response) {
+                
+                console.log("Success:", response);
+                for (var i in response) {
+                    console.log(i);
+                    data += `<option value="${ [i].id}" > ${response[i].name}</option>`;
+                }
+
+                $("#CourseId").html(data);
+            },
+            error: function (xhr, status, error) {
+                console.log("Error:", xhr.responseText);
+            }
+        });
+
+            }
+        </script>
