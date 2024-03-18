@@ -15,11 +15,7 @@ namespace Assignment.Controllers
             return View("GetAll", InstructorBl.GetAll());
         }
 
-        public IActionResult Search(string Key)
-        {
-            List<Instructor> instructors = InstructorBl.GetAll();
-            return PartialView("instructorPV", InstructorBl.Search(Key));
-        }
+        
 
         public IActionResult GetAll()
         {
@@ -63,9 +59,22 @@ namespace Assignment.Controllers
             }
         }
 
-        /*public IActionResult Search(string Key)
+        public IActionResult Search(string Key)
         {
-             InstructorBl.Search(Key);
-        }*/
+            List<SearchInstructorViewModel> searchInstructorViewModels = new List<SearchInstructorViewModel>();
+            foreach (Instructor item in InstructorBl.Search(Key))
+            {
+                searchInstructorViewModels.Add(new SearchInstructorViewModel()
+                {
+                    Name = item.Name,
+                    Address = item.Address,
+                    Image = item.Image,
+                    Salary = item.Salary,
+                    Department = item.Department.Name,
+                    Course = item.Course.Name
+                });
+            }
+            return Json(searchInstructorViewModels);
+        }
     }
 }

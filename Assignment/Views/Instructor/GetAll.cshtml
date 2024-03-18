@@ -7,7 +7,8 @@
 
 <div id="content">
     <div>
-        <input id="key" type="text" class="form corm-control col-2 mx-3" placeholder="Key" />
+        <input id="key" type="text" class="form corm-control col-2 mx-3" 
+        placeholder="Key"/>
         <button class="btn btn-primary" onclick="Search()">Hit</button>
     </div>
     <div id="instructors" class="container-fluid d-flex flex-wrap">
@@ -31,19 +32,41 @@
 
         }
     </div>
+    
 </div>
    
     <script>
+        
+        document.getElementById("key").addEventListener("input", () => Search())
         function Search(){
             var key = $("#key").val();
             console.log(key);
+            var data = "";
+
         $.ajax({
-            url: "http://localhost:5239/instructor/search?Key=" + key,
+            url: "/instructor/search?Key=" + key,
             method: "GET",
             
             success: function (response) {
                 console.log("Success:", response);
-                $("#partView").html(response);;
+                //$("#partView").html(response);
+                for (let instructor of response) {
+                    data += `<div class="card my-4 mx-3" style="width: 21%">
+                    <img src="/images/${instructor.image}" class="card-img-top" alt="${instructor.name}">
+                    <div class="card-body">
+                        <h3 class="card-title">Name: ${instructor.name}</h3>
+                        <h5 class="card-text">Address: ${instructor.address}</h5>
+                        <h5 class="card-text">Salary: ${instructor.salary}</h5>
+                        <br>
+
+                        <div class="mt-auto">
+                            <h5 class="card-text" style="color: teal">Department: ${instructor.department}.Name</h5>
+                            <h5 class="card-text" style="color: teal">Course: ${instructor.course}</h5>
+                        </div>
+                    </div>
+                </div>`;
+                }
+                $("#instructors").html(data);
             },
             error: function (xhr, status, error) {
                 console.log("Error:", xhr.responseText);

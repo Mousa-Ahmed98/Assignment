@@ -6,10 +6,10 @@ namespace Assignment.Models
 {
     public class InstructorBl
     {
-        static ITIContext ITIContext = new ITIContext();
+        
         public static List<Instructor> GetAll()
         {
-            return ITIContext
+            return new ITIContext()
                 .Instructors
                 .Include(I => I.Course)
                 .Include(I => I.Department)
@@ -18,7 +18,7 @@ namespace Assignment.Models
 
         public static Instructor? Get(int Id)
         {
-            return ITIContext
+            return new ITIContext()
                 .Instructors
                 .Where(I => I.Id == Id)
                 .Include(I => I.Course)
@@ -27,10 +27,10 @@ namespace Assignment.Models
 
         public static async Task Add(Instructor instructor)
         {
-            ITIContext.Instructors.Add(instructor);
+            new ITIContext().Instructors.Add(instructor);
             try
             {
-                await ITIContext.SaveChangesAsync();
+                await new ITIContext().SaveChangesAsync();
             }
             catch (Exception e)
             {
@@ -40,9 +40,19 @@ namespace Assignment.Models
 
         public static List<Instructor> Search(string Key)
         {
-            return ITIContext
+            if(Key != null)
+            return new ITIContext()
                 .Instructors
                 .Where(i => i.Name.StartsWith(Key))
+                .Include(i => i.Course)
+                .Include(i => i.Department)
+                .ToList();
+
+            else
+                return new ITIContext()
+                .Instructors
+                .Include(i => i.Course)
+                .Include(i => i.Department)
                 .ToList();
         }
     }
