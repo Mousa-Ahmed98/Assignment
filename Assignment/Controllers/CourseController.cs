@@ -52,5 +52,26 @@ namespace Assignment.Controllers
             List<Course> courses = CourseBl.GetAll();
             return View("GetAll", courses);
         }
+
+
+        public IActionResult Edit(int Id)
+        {
+            Course? course = CourseBl.GetCourse(Id);
+            EditCourseVM editCourseVM = new EditCourseVM();
+            if(course != null)
+            {
+                editCourseVM.Id = course.Id;
+                editCourseVM.Name = course.Name;
+                editCourseVM.Degree = course.Degree;
+                editCourseVM.MinDegree = course.MinDegree;
+                editCourseVM.Hours = course.Hours;
+                editCourseVM.DepartmentId = course.DepartmentId;
+            }
+            return View("Edit", editCourseVM);
+        }
+        public IActionResult CheckMinDegree(int MinDegree, int Degree)
+        {
+            return Json(MinDegree <= Degree);
+        }
     }
 }

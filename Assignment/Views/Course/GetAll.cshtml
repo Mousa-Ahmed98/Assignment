@@ -3,15 +3,15 @@
     
     <table class="table table-striped">
         <thead>
-            <tr>
+            <tr style="text-align: center">
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Hours</th>
                 <th scope="col">Minimum degree</th>
-                <th scope="col">Course Results</th>
+                @* <th scope="col">Course Results</th> *@
             </tr>
         </thead>
-        <tbody>
+        <tbody style="text-align: center">
             @foreach(Course course in Model)
             {
                 <tr>
@@ -19,10 +19,24 @@
                     <td>@course.Name</td>
                     <td>@course.Hours</td>
                     <td>@course.MinDegree</td>
-                    <td><a href="CourseResult?CID=@course.Id"> See result</a></td>
+                    <td><a href="CourseResult?CID=@course.Id"> @* See result *@</a></td>
+                    
+                    <td>
+                        <button class="btn btn-primary" onclick="goToEdit(@course.Id)">Update</button>
+                    </td>
+                    <td>
+                <td><a href="CourseResult?CID=@course.Id"> <i class="fa-solid fa-circle-arrow-right fs-4"></i></a></td>
+                    
                 </tr>
+            
             }
             
         </tbody>
     </table>
     
+
+<script>
+    function goToEdit(Id){
+        window.location.href = "/course/Edit?Id="+Id;
+    }
+</script>

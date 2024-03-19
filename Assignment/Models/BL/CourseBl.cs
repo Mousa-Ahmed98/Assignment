@@ -47,5 +47,12 @@ namespace Assignment.Models.BL
                 && addCourseVM.Hours > 0
                 && addCourseVM.MinDegree > 0) ? true : false;
         }
+
+        public static Course? GetCourse(int CID)
+        {
+            return ITIContext
+                    .Courses
+                    .FirstOrDefault(c => c.Id == CID);
+        }
     }
 }
