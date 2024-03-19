@@ -35,12 +35,17 @@ namespace Assignment.Models
             ITIContext.Instructors.Add(instructor);
             try
             {
-                await ITIContext.SaveChangesAsync();
+                await SaveChangesAsync();
             }
             catch (Exception e)
             {
                 throw e;
             }
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await ITIContext.SaveChangesAsync();
         }
 
 

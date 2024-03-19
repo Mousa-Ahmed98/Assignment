@@ -1,4 +1,5 @@
 using Assignment.Models;
+using Assignment.Models.BL;
 using Assignment.Models.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,7 @@ namespace Assignment
                 options.UseSqlServer(builder.Configuration.GetConnectionString("cs"));
             });
             builder.Services.AddScoped<IInstructorRepository, InstructorRepository>();
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
 
 

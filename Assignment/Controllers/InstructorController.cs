@@ -8,35 +8,38 @@ namespace Assignment.Controllers
 {
     public class InstructorController : Controller
     {
-        private readonly IInstructorRepository instructor;
+        private readonly IInstructorRepository instructorRepository;
+        private readonly IDepartmentRepository departmentRepository;
 
-        public InstructorController(IInstructorRepository instructor)
+        public InstructorController(IInstructorRepository instructor,
+            IDepartmentRepository departmentRepository)
         {
-            this.instructor = instructor;
+            instructorRepository = instructor;
+            this.departmentRepository = departmentRepository;
         }
-        
+
         public IActionResult Index()
         {
-            List<Instructor> instructors = instructor.GetAll();
-            return View();
+            List<Instructor> instructors = instructorRepository.GetAll();
+            return View("Index");
         }
 
         public IActionResult GetAll()
         {
-            return View("GetAll", instructor.GetAll());
+            return View("GetAll", instructorRepository.GetAll());
         }
 
 
         public IActionResult Get(int Id)
         {
-            return View("GetView", instructor.Get(Id));
+            return View("GetView", instructorRepository.Get(Id));
         }
 
         public IActionResult Add()
         {
             AddInstructorVM addInstructorVM = new AddInstructorVM();
             addInstructorVM.Courses = CourseBl.GetAll();
-            addInstructorVM.Departments = DepartmentBl.GetAll();
+            addInstructorVM.Departments = departmentRepository.GetAll();
 
 
             return View("Add", addInstructorVM);
@@ -46,7 +49,7 @@ namespace Assignment.Controllers
         {
             try
             {
-                await instructor.Add(_instructor);
+                await instructorRepository.Add(_instructor);
                 return Content("Added successfully");
             }
             catch(Exception e)

@@ -1,5 +1,6 @@
 ﻿using Assignment.Models;
 using Assignment.Models.BL;
+using Assignment.Models.Services;
 using Assignment.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,12 @@ namespace Assignment.Controllers
 {
     public class CourseController : Controller
     {
-        ITIContext ITIContext = new ITIContext();
+        private readonly IDepartmentRepository departmentRepository;
+
+        public CourseController(IDepartmentRepository departmentRepository)
+        {
+            this.departmentRepository = departmentRepository;
+        }
 
         public IActionResult Index()
         {
@@ -27,7 +33,7 @@ namespace Assignment.Controllers
         public IActionResult Add()
         {
             AddCourseVM addCourseVM = new AddCourseVM();
-            addCourseVM.Departments = DepartmentBl.GetAll();
+            addCourseVM.Departments = departmentRepository.GetAll();
             return View("Add",addCourseVM);
         }
 
@@ -42,7 +48,7 @@ namespace Assignment.Controllers
                     return RedirectToAction("GetAll");
                 }
             }
-            addCourseVM.Departments = DepartmentBl.GetAll();
+            addCourseVM.Departments = departmentRepository.GetAll();
             addCourseVM.IsError = true;
             return View("Add", addCourseVM);
         }

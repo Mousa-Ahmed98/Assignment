@@ -11,5 +11,7 @@ namespace Assignment.Models.Services
         Task Add(Instructor instructor);
 
         Instructor? Get(int Id);
+
+        Task SaveChangesAsync();
     }
 }
