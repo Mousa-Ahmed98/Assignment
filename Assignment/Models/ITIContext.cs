@@ -9,7 +9,14 @@ namespace Assignment.Models
         public DbSet<Course> Courses { get; set; }
         public DbSet<Trainee> Trainees { get; set; }
         public DbSet<CrsResult> CrsResults { get; set; }
+        public ITIContext()
+        {
 
+        }
+        public ITIContext(DbContextOptions<ITIContext> options):base()
+        {
+            
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

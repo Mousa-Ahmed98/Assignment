@@ -1,29 +1,35 @@
 ﻿using Assignment.Models;
 using Assignment.Models.BL;
+using Assignment.Models.Services;
 using Assignment.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Assignment.Controllers
 {
     public class InstructorController : Controller
     {
+        private readonly IInstructorRepository instructor;
+
+        public InstructorController(IInstructorRepository instructor)
+        {
+            this.instructor = instructor;
+        }
         
         public IActionResult Index()
         {
-            List<Instructor> instructors = InstructorBl.GetAll();
+            List<Instructor> instructors = instructor.GetAll();
             return View();
         }
 
         public IActionResult GetAll()
         {
-            return View("GetAll", InstructorBl.GetAll());
+            return View("GetAll", instructor.GetAll());
         }
 
 
         public IActionResult Get(int Id)
         {
-            return View("GetView", InstructorBl.Get(Id));
+            return View("GetView", instructor.Get(Id));
         }
 
         public IActionResult Add()
@@ -36,16 +42,16 @@ namespace Assignment.Controllers
             return View("Add", addInstructorVM);
         }
         [HttpPost]
-        public async Task<IActionResult> SaveAdd(Instructor instructor)
+        public async Task<IActionResult> SaveAdd(Instructor _instructor)
         {
             try
             {
-                await InstructorBl.Add(instructor);
+                await instructor.Add(_instructor);
                 return Content("Added successfully");
             }
             catch(Exception e)
             {
-                AddInstructorVM addInstructorVM = AddInstructorVM.InstantiateInsVM(instructor);
+                AddInstructorVM addInstructorVM = AddInstructorVM.InstantiateInsVM(_instructor);
                 
                 return View("Add", addInstructorVM);
             }

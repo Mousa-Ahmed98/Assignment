@@ -1,3 +1,7 @@
+using Assignment.Models;
+using Assignment.Models.Services;
+using Microsoft.EntityFrameworkCore;
+
 namespace Assignment
 {
     public class Program
@@ -8,6 +12,14 @@ namespace Assignment
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            //Always before Building App
+            builder.Services.AddDbContext<ITIContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("cs"));
+            });
+            builder.Services.AddScoped<IInstructorRepository, InstructorRepository>();
+
+
 
             var app = builder.Build();
 

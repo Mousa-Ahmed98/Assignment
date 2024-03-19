@@ -1,13 +1,18 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using Assignment.Models.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Assignment.Models
 {
-    public class InstructorBl
+    public class InstructorRepository : IInstructorRepository
     {
-        static ITIContext ITIContext = new ITIContext();
-        public static List<Instructor> GetAll()
+        private readonly ITIContext ITIContext;
+        public InstructorRepository(ITIContext _ITIContext)
+        {
+            ITIContext = _ITIContext;
+        }
+        public List<Instructor> GetAll()
         {
             return ITIContext
                 .Instructors
@@ -16,7 +21,7 @@ namespace Assignment.Models
                 .ToList();
         }
 
-        public static Instructor? Get(int Id)
+        public Instructor? Get(int Id)
         {
             return ITIContext
                 .Instructors
@@ -25,7 +30,7 @@ namespace Assignment.Models
                 .Include(I => I.Department).FirstOrDefault();
         }
 
-        public static async Task Add(Instructor instructor)
+        public async Task Add(Instructor instructor)
         {
             ITIContext.Instructors.Add(instructor);
             try
@@ -37,5 +42,7 @@ namespace Assignment.Models
                 throw e;
             }
         }
+
+
     }
 }
