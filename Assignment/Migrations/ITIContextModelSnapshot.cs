@@ -29,6 +29,9 @@ namespace Assignment.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Degree")
+                        .HasColumnType("int");
+
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
@@ -46,12 +49,13 @@ namespace Assignment.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Course");
+                    b.ToTable("Course", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            Degree = 100,
                             DepartmentId = 1,
                             Hours = 40,
                             MinDegree = 90,
@@ -60,6 +64,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 2,
+                            Degree = 90,
                             DepartmentId = 2,
                             Hours = 30,
                             MinDegree = 80,
@@ -68,6 +73,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 3,
+                            Degree = 95,
                             DepartmentId = 3,
                             Hours = 35,
                             MinDegree = 85,
@@ -76,6 +82,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 4,
+                            Degree = 95,
                             DepartmentId = 4,
                             Hours = 35,
                             MinDegree = 85,
@@ -84,6 +91,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 5,
+                            Degree = 90,
                             DepartmentId = 5,
                             Hours = 30,
                             MinDegree = 80,
@@ -92,6 +100,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 6,
+                            Degree = 85,
                             DepartmentId = 6,
                             Hours = 25,
                             MinDegree = 75,
@@ -100,6 +109,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 7,
+                            Degree = 80,
                             DepartmentId = 7,
                             Hours = 20,
                             MinDegree = 70,
@@ -108,6 +118,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 8,
+                            Degree = 85,
                             DepartmentId = 8,
                             Hours = 25,
                             MinDegree = 75,
@@ -116,6 +127,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 9,
+                            Degree = 90,
                             DepartmentId = 9,
                             Hours = 30,
                             MinDegree = 80,
@@ -124,6 +136,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 10,
+                            Degree = 85,
                             DepartmentId = 1,
                             Hours = 25,
                             MinDegree = 75,
@@ -132,6 +145,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 11,
+                            Degree = 90,
                             DepartmentId = 2,
                             Hours = 30,
                             MinDegree = 80,
@@ -140,6 +154,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 12,
+                            Degree = 85,
                             DepartmentId = 3,
                             Hours = 25,
                             MinDegree = 75,
@@ -148,6 +163,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 13,
+                            Degree = 90,
                             DepartmentId = 4,
                             Hours = 30,
                             MinDegree = 80,
@@ -156,6 +172,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 14,
+                            Degree = 90,
                             DepartmentId = 5,
                             Hours = 30,
                             MinDegree = 80,
@@ -164,6 +181,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 15,
+                            Degree = 85,
                             DepartmentId = 6,
                             Hours = 25,
                             MinDegree = 75,
@@ -172,14 +190,16 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 16,
+                            Degree = 85,
                             DepartmentId = 7,
                             Hours = 25,
-                            MinDegree = 84,
+                            MinDegree = 75,
                             Name = "Computer Graphics Fundamentals"
                         },
                         new
                         {
                             Id = 17,
+                            Degree = 90,
                             DepartmentId = 8,
                             Hours = 30,
                             MinDegree = 80,
@@ -188,6 +208,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 18,
+                            Degree = 85,
                             DepartmentId = 9,
                             Hours = 25,
                             MinDegree = 75,
@@ -196,6 +217,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 19,
+                            Degree = 80,
                             DepartmentId = 1,
                             Hours = 20,
                             MinDegree = 70,
@@ -204,6 +226,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 20,
+                            Degree = 90,
                             DepartmentId = 2,
                             Hours = 30,
                             MinDegree = 80,
@@ -212,6 +235,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 21,
+                            Degree = 95,
                             DepartmentId = 3,
                             Hours = 35,
                             MinDegree = 85,
@@ -220,6 +244,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 22,
+                            Degree = 85,
                             DepartmentId = 4,
                             Hours = 25,
                             MinDegree = 75,
@@ -228,6 +253,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 23,
+                            Degree = 95,
                             DepartmentId = 5,
                             Hours = 35,
                             MinDegree = 85,
@@ -236,6 +262,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 24,
+                            Degree = 90,
                             DepartmentId = 6,
                             Hours = 30,
                             MinDegree = 80,
@@ -244,6 +271,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 25,
+                            Degree = 85,
                             DepartmentId = 7,
                             Hours = 25,
                             MinDegree = 75,
@@ -252,6 +280,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 26,
+                            Degree = 80,
                             DepartmentId = 8,
                             Hours = 20,
                             MinDegree = 70,
@@ -260,6 +289,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 27,
+                            Degree = 90,
                             DepartmentId = 9,
                             Hours = 30,
                             MinDegree = 80,
@@ -268,6 +298,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 28,
+                            Degree = 85,
                             DepartmentId = 1,
                             Hours = 25,
                             MinDegree = 75,
@@ -276,6 +307,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 29,
+                            Degree = 90,
                             DepartmentId = 2,
                             Hours = 30,
                             MinDegree = 80,
@@ -284,6 +316,7 @@ namespace Assignment.Migrations
                         new
                         {
                             Id = 30,
+                            Degree = 85,
                             DepartmentId = 3,
                             Hours = 25,
                             MinDegree = 75,
@@ -314,7 +347,7 @@ namespace Assignment.Migrations
 
                     b.HasIndex("TraineeId");
 
-                    b.ToTable("CrsResult");
+                    b.ToTable("CrsResult", (string)null);
 
                     b.HasData(
                         new
@@ -1317,7 +1350,7 @@ namespace Assignment.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Department");
+                    b.ToTable("Department", (string)null);
 
                     b.HasData(
                         new
@@ -1411,7 +1444,7 @@ namespace Assignment.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Instructor");
+                    b.ToTable("Instructor", (string)null);
 
                     b.HasData(
                         new
@@ -2046,7 +2079,7 @@ namespace Assignment.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Trainee");
+                    b.ToTable("Trainee", (string)null);
 
                     b.HasData(
                         new
