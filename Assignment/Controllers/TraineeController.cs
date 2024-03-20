@@ -1,5 +1,6 @@
 ﻿using Assignment.Models;
 using Assignment.Models.BL;
+using Assignment.Models.Services;
 using Assignment.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ namespace Assignment.Controllers
 {
     public class TraineeController : Controller
     {
-        ITIContext ITIContext = new ITIContext();
+        private readonly UnitOfWork unitOfWork = new UnitOfWork();
         public IActionResult Index()
         {
             return View();
@@ -16,8 +17,9 @@ namespace Assignment.Controllers
 
         public IActionResult TraineeCourseResult(int TID, int CID)
         {
-            TraineeCourseResultViewModel traineeCourseResultViewModel
-                = TraineeBL.GetTraineeCourseResult(TID, CID);
+            TraineeCourseResultViewModel traineeCourseResultViewModel = 
+                //= unitOfWork.CrsResRepository.Get()
+                TraineeBL.GetTraineeCourseResult(TID, CID);
             if(traineeCourseResultViewModel == null)
             {
                 return View("EmptyView");

@@ -8,48 +8,58 @@ namespace Assignment.Controllers
 {
     public class InstructorController : Controller
     {
-        private readonly IInstructorRepository instructorRepository;
-        private readonly IDepartmentRepository departmentRepository;
+        /*private readonly IInstructorRepository instructorRepository;
+        private readonly IDepartmentRepository departmentRepository;*/
 
-        public InstructorController(IInstructorRepository instructor,
+        private UnitOfWork unitOfWork = new UnitOfWork();
+
+        /*public InstructorController(IInstructorRepository instructor,
             IDepartmentRepository departmentRepository)
         {
             instructorRepository = instructor;
             this.departmentRepository = departmentRepository;
-        }
+        }*/
+
+        /*public InstructorController(UnitOfWork _unitOfWork)
+        {
+            unitOfWork = _unitOfWork;
+        }*/
 
         public IActionResult Index()
         {
-            List<Instructor> instructors = instructorRepository.GetAll();
+            IEnumerable<Instructor> instructors = unitOfWork.InstructorRepository.Get();//instructorRepository.GetAll();
             return View("Index");
         }
 
         public IActionResult GetAll()
         {
-            return View("GetAll", instructorRepository.GetAll());
+            return View("GetAll", unitOfWork.InstructorRepository.Get());//instructorRepository.GetAll());
         }
 
 
         public IActionResult Get(int Id)
         {
-            return View("GetView", instructorRepository.Get(Id));
+            return View("GetView", unitOfWork.InstructorRepository.GetById(Id));//instructorRepository.Get(Id));
         }
 
         public IActionResult Add()
         {
-            AddInstructorVM addInstructorVM = new AddInstructorVM();
-            addInstructorVM.Courses = CourseBl.GetAll();
-            addInstructorVM.Departments = departmentRepository.GetAll();
+            AddInstructorVM addInstructorVM = new AddInstructorVM
+            {
+                Courses = (List<Course>)unitOfWork.CourseRepository.Get(),//CourseBl.GetAll();
+                Departments = (List<Department>)unitOfWork.DepartmentRepository.Get()
+            };
 
 
             return View("Add", addInstructorVM);
         }
         [HttpPost]
-        public async Task<IActionResult> SaveAdd(Instructor _instructor)
+        public IActionResult SaveAdd(Instructor _instructor)
         {
             try
             {
-                await instructorRepository.Add(_instructor);
+                unitOfWork.InstructorRepository.Insert(_instructor);
+                unitOfWork.Save();
                 return Content("Added successfully");
             }
             catch(Exception e)

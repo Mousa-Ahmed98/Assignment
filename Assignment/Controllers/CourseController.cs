@@ -9,12 +9,14 @@ namespace Assignment.Controllers
 {
     public class CourseController : Controller
     {
-        private readonly IDepartmentRepository departmentRepository;
+        /*private readonly IDepartmentRepository departmentRepository;
 
         public CourseController(IDepartmentRepository departmentRepository)
         {
             this.departmentRepository = departmentRepository;
-        }
+        }*/
+
+        private readonly UnitOfWork unitOfWork = new UnitOfWork();
 
         public IActionResult Index()
         {
@@ -24,7 +26,7 @@ namespace Assignment.Controllers
 
         public IActionResult CourseResult(int CID)
         {
-            Course Course = CourseBl.GetCourseResult(CID);
+            Course? Course = unitOfWork.CourseRepository.GetById(CID);//CourseBl.GetCourseResult(CID);
 
 
             return View("CourseResult", Course);
@@ -33,7 +35,7 @@ namespace Assignment.Controllers
         public IActionResult Add()
         {
             AddCourseVM addCourseVM = new AddCourseVM();
-            addCourseVM.Departments = departmentRepository.GetAll();
+            addCourseVM.Departments = (List<Department>) unitOfWork.DepartmentRepository.Get();//departmentRepository.GetAll();
             return View("Add",addCourseVM);
         }
 
@@ -48,21 +50,21 @@ namespace Assignment.Controllers
                     return RedirectToAction("GetAll");
                 }
             }
-            addCourseVM.Departments = departmentRepository.GetAll();
+            addCourseVM.Departments = (List<Department>)unitOfWork.DepartmentRepository.Get();//departmentRepository.GetAll();
             addCourseVM.IsError = true;
             return View("Add", addCourseVM);
         }
 
         public IActionResult GetAll()
         {
-            List<Course> courses = CourseBl.GetAll();
+            List<Course> courses = (List<Course>)unitOfWork.CourseRepository.Get();//CourseBl.GetAll();
             return View("GetAll", courses);
         }
 
 
         public IActionResult Edit(int Id)
         {
-            Course? course = CourseBl.GetCourse(Id);
+            Course? course = unitOfWork.CourseRepository.GetById(Id);//CourseBl.GetCourse(Id);
             EditCourseVM editCourseVM = new EditCourseVM();
             if(course != null)
             {
