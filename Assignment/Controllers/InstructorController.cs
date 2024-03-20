@@ -11,7 +11,12 @@ namespace Assignment.Controllers
         /*private readonly IInstructorRepository instructorRepository;
         private readonly IDepartmentRepository departmentRepository;*/
 
-        private UnitOfWork unitOfWork = new UnitOfWork();
+        private IUnitOfWork unitOfWork;
+
+        public InstructorController(IUnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
 
         /*public InstructorController(IInstructorRepository instructor,
             IDepartmentRepository departmentRepository)

@@ -1,6 +1,6 @@
 ﻿namespace Assignment.Models.Services
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ITIContext context = new ITIContext();
         private GenericRepository<Instructor>? instructorRepository;

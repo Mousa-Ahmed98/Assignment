@@ -11,7 +11,7 @@ namespace Assignment.Models.Services
         public GenericRepository(ITIContext context)
         {
             this.context = context;
-            this.dbSet = context.Set<TEntity>();
+            dbSet = context.Set<TEntity>();
         }
 
         public virtual IEnumerable<TEntity> Get(
